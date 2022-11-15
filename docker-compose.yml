@@ -1,0 +1,80 @@
+version: '3.5'
+
+services:
+    image-uploader:
+        container_name: image-uploader
+        image: image-uploader
+        build:
+          context: ./image_uploader
+          dockerfile: Dockerfile
+        restart: unless-stopped
+        networks:
+          - wenn-task
+        ports:
+          - 5000:5000
+        volumes:
+          - ./image_uploader/logs:/usr/src/app/logs
+          - ./image_uploader/media:/usr/src/app/media
+        environment:
+          - YOLO=yolo-detector:5000
+          - FRCNN=frcnn-detector:5000
+        command: gunicorn -c ./gunicorn.conf.py main:app
+
+    yolo-detector:
+      container_name: yolo-detector
+      image: yolo-detector
+      build:
+        context: ./yolo
+        dockerfile: Dockerfile
+      restart: unless-stopped
+      networks:
+        - wenn-task
+      ports:
+        - 5001:5000
+      volumes:
+        - ./yolo/logs:/usr/src/app/logs
+        - ./yolo/media:/usr/src/app/media
+      command: gunicorn -c ./gunicorn.conf.py main:app
+      depends_on:
+        - image-uploader
+
+    frcnn-detector:
+        container_name: frcnn-detector
+        image: frcnn-detector
+        build:
+          context: ./frcnn
+          dockerfile: Dockerfile
+        restart: unless-stopped
+        networks:
+          - wenn-task
+        ports:
+          - 5002:5000
+        volumes:
+          - ./frcnn/logs:/usr/src/app/logs
+          - ./frcnn/media:/usr/src/app/media
+          - ./frcnn/checkpoints:/root/.cache/torch/hub/checkpoints
+        command: gunicorn -c ./gunicorn.conf.py main:app
+        depends_on:
+          - image-uploader
+
+    bbox-fusion:
+        container_name: bbox-fusion
+        image: bbox-fusion
+        build:
+          context: ./bbox_fusion
+          dockerfile: Dockerfile
+        restart: unless-stopped
+        networks:
+          - wenn-task
+        volumes:
+          - ./bbox_fusion/logs:/usr/src/app/logs
+          - ./bbox_fusion/media:/usr/src/app/media
+#        command: gunicorn -c ./gunicorn.conf.py main:app
+        command: python3 main.py
+        depends_on:
+          - yolo-detector
+          - frcnn-detector
+
+networks:
+    wenn-task:
+        name: wenn-task

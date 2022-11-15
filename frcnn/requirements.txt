@@ -1,0 +1,17 @@
+albumentations
+comet
+Flask
+Flask-MQTT
+gsutil
+gunicorn
+matplotlib
+notebook
+numpy
+opencv-python<4.6.0.66
+pandas
+Pillow
+psutil
+PyYAML
+requests
+seaborn
+tqdm

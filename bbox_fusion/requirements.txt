@@ -1,0 +1,7 @@
+ensemble-boxes
+paho-mqtt
+numpy
+Pillow
+PyYAML
+requests
+psutil

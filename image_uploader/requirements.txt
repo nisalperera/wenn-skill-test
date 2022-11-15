@@ -1,0 +1,9 @@
+ensemble-boxes
+Flask
+Flask-MQTT
+Flask-UUID
+numpy
+Pillow
+PyYAML
+requests
+psutil

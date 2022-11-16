@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "9c0c6dd7-7547-4a54-a1e7-7b8be215b768",
+		"name": "Wenn",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21433517"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Yolo Objects",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/home/nisal/Projects/yolov5/data/images/bus.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/object-detection",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"object-detection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FRCNN Objects",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/home/nisal/Projects/yolov5/data/images/bus.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:6000/api/v1/frcnn/object-detection",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6000",
+					"path": [
+						"api",
+						"v1",
+						"frcnn",
+						"object-detection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Image Uploader",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

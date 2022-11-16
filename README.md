@@ -35,6 +35,8 @@ To deploy ML models to sagemaker first I need to restructure the code which aws 
  
 Then a tar ball should be created including all the files and folders mentioned above. It should be ziped.
 
+Created ziped tar balls should be uploaded to a S3 bucket where the sagemaker can download from.
+
 After that either using console, sagemaker SDK or AWS CLI we can deploy models in AWS Sagemaker.
 
 Model deployment architecture will be as follows;

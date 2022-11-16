@@ -29,8 +29,8 @@ only on fusion instance per UUID. Then I wait until I get detection results from
 To deploy ML models to sagemaker first I need to restructure the code which aws sagemaker expects it to be. The structure is as follows;
 
 |--- code  
-     |--- inference.py  
-     |--- requirements.txt  
+|---|--- inference.py  
+|---|--- requirements.txt  
 |--- model.pth  
  
 Then a tar ball should be created including all the files and folders mentioned above. It should be ziped.
